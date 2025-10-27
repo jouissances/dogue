@@ -4,10 +4,11 @@
 A responsive, accessible dog breed encyclopedia website with a modern vertical scrolling layout. Each breed has its own full-page entry displaying detailed information including origin, history, physical traits, temperament, and fun facts.
 
 ## Current State
-- **Status**: Frontend prototype complete, ready for backend integration
-- **Tech Stack**: React, TypeScript, Tailwind CSS, Express.js, Wouter
+- **Status**: ✅ Complete and fully functional
+- **Tech Stack**: React, TypeScript, Tailwind CSS, Express.js, Wouter, React Query
 - **Design**: Full-page vertical scrolling layout with snap scrolling
-- **Breeds**: Currently 3 breeds (Beagle, Dachshund, Golden Retriever) with generated images
+- **Breeds**: 3 breeds (Beagle, Dachshund, Golden Retriever) with AI-generated images
+- **Testing**: End-to-end tests passing successfully
 
 ## Project Architecture
 
@@ -28,8 +29,11 @@ A responsive, accessible dog breed encyclopedia website with a modern vertical s
   - `schema.ts`: TypeScript interfaces and Zod schemas
 
 ### Backend (Express.js)
-- Minimal static server currently
-- Storage interface uses in-memory storage (MemStorage)
+- **Routes**:
+  - `GET /api/breeds` - List all breeds (supports search via ?q= parameter)
+  - `GET /api/breeds/:id` - Get specific breed by ID
+- **Storage**: In-memory storage (MemStorage) with 3 pre-populated breeds
+- **Error Handling**: Proper 404/500 responses with error messages
 
 ## Features
 
@@ -74,3 +78,4 @@ A responsive, accessible dog breed encyclopedia website with a modern vertical s
 - Menu should be accessible via top-right corner icon
 - Search functionality important for breed discovery
 - Keyboard navigation is a priority
+- Stability and reliability prioritized over advanced features (focus management deferred)
