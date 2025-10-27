@@ -1,12 +1,12 @@
 # Dog Breed Encyclopedia
 
 ## Overview
-A responsive, accessible dog breed encyclopedia website with a modern horizontal scrolling layout. Each breed has its own full-page entry displaying detailed information including origin, history, physical traits, temperament, and fun facts.
+A responsive, accessible dog breed encyclopedia website with a hybrid vertical-horizontal scrolling layout. The site features a landing page followed by a horizontally scrolling breed section. Each breed has its own full-page entry displaying detailed information including origin, history, physical traits, temperament, and fun facts.
 
 ## Current State
 - **Status**: ✅ Complete and fully functional
 - **Tech Stack**: React, TypeScript, Tailwind CSS, Express.js, Wouter, React Query
-- **Design**: Full-page horizontal scrolling layout with snap scrolling
+- **Design**: Hybrid vertical-horizontal scrolling layout with snap scrolling
 - **Breeds**: 3 breeds (Beagle, Dachshund, Golden Retriever) with AI-generated images
 - **Testing**: End-to-end tests passing successfully
 
@@ -38,20 +38,24 @@ A responsive, accessible dog breed encyclopedia website with a modern horizontal
 ## Features
 
 ### Implemented
-- ✅ Full-page horizontal scrolling layout with snap scrolling
+- ✅ Hybrid vertical-horizontal scrolling layout with snap scrolling
 - ✅ Alphabetically sorted breed sections
 - ✅ Slide-out menu panel with search functionality
-- ✅ Navigation arrows on left/right sides (only visible on breed pages)
-- ✅ Keyboard navigation (Arrow Left/Right between sections)
+- ✅ Navigation arrows on left/right sides (only visible in breed section)
+- ✅ Keyboard navigation (Down/Up for vertical, Left/Right for horizontal)
 - ✅ Semantic HTML with proper ARIA labels
 - ✅ Responsive design (mobile, tablet, desktop)
 - ✅ Smooth scroll behavior
 - ✅ Focus states for accessibility
 
 ### Navigation
-- **Horizontal scroll**: Browse all breeds left-to-right in alphabetical order
-- **Keyboard**: Arrow Left/Right keys navigate between landing page and breed pages
-- **Navigation arrows**: Side buttons for previous/next (hidden on landing page, visible on breed pages)
+- **Vertical scroll**: Scroll down from landing page to breed section
+- **Horizontal scroll**: Browse all breeds left-to-right in alphabetical order within breed section
+- **Keyboard**: 
+  - Arrow Down: From landing → breed section
+  - Arrow Up: From breed section → landing
+  - Arrow Left/Right: Navigate between breeds (only in breed section)
+- **Navigation arrows**: Side buttons for previous/next breed (hidden on landing page, visible in breed section)
 - **Menu panel**: Search and quick jump to specific breeds
 - **Tab navigation**: Full keyboard accessibility
 
@@ -63,13 +67,16 @@ A responsive, accessible dog breed encyclopedia website with a modern horizontal
 - Accessibility: WCAG AA compliant, screen reader friendly
 
 ## Recent Changes (October 27, 2025)
-- **Changed to horizontal scrolling**: Converted from vertical to horizontal snap-scrolling layout
-- **Updated keyboard navigation**: Changed from Arrow Up/Down to Arrow Left/Right
-- **Fixed navigation bug**: ArrowRight from landing now correctly navigates to Beagle (first breed, index 0) instead of Dachshund
-- **Conditional arrow visibility**: Navigation arrows only appear on breed pages, hidden on landing page
-- **Single source of truth**: Scroll listener exclusively manages currentBreedIndex state, eliminating race conditions
+- **Hybrid vertical-horizontal scrolling**: Landing page scrolls down to breed section, then horizontal scrolling between breeds
+- **Updated keyboard navigation**: 
+  - Down arrow: Landing → breed section
+  - Up arrow: Breed section → landing
+  - Left/Right arrows: Navigate between breeds
+- **Conditional arrow visibility**: Navigation arrows only appear in breed section, hidden on landing page
+- **Fixed scroll listener**: Attached to correct scrollable container (#main-container) for proper state tracking
+- **State management**: isOnLanding tracks vertical position, currentBreedIndex tracks horizontal position
 - Removed drop shadows from breed images
-- Implemented full-page snap scrolling
+- Implemented snap scrolling for both vertical and horizontal directions
 - Created searchable menu panel with Escape key support
 - Alphabetically sorted breed display
 - Integrated React Query for API data fetching
@@ -77,9 +84,10 @@ A responsive, accessible dog breed encyclopedia website with a modern horizontal
 - Added accessibility improvements (aria-hidden, pointer-events)
 
 ## User Preferences
-- User prefers horizontal full-page scrolling (book-style) layout
-- Navigation arrows should only appear on breed pages, not landing page
+- User prefers hybrid vertical-horizontal scrolling layout
+- Landing page → scroll down → breed section → horizontal scroll between breeds
+- Navigation arrows should only appear in breed section, not on landing page
 - Menu should be accessible via top-right corner icon
 - Search functionality important for breed discovery
-- Keyboard navigation is a priority (Arrow Left/Right for horizontal navigation)
+- Keyboard navigation is a priority (Down/Up for vertical, Left/Right for horizontal)
 - Stability and reliability prioritized over advanced features
