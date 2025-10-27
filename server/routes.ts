@@ -1,7 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertDogBreedSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // GET /api/breeds - List all breeds (supports search via query param)
@@ -39,20 +38,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // POST /api/breeds - Create a new breed (for future expansion)
-  app.post("/api/breeds", async (req, res) => {
-    try {
-      const validatedBreed = insertDogBreedSchema.parse(req.body);
-      const newBreed = await storage.createBreed(validatedBreed);
-      res.status(201).json(newBreed);
-    } catch (error) {
-      console.error("Error creating breed:", error);
-      if (error instanceof Error && error.name === "ZodError") {
-        return res.status(400).json({ error: "Invalid breed data", details: error });
-      }
-      res.status(500).json({ error: "Failed to create breed" });
-    }
-  });
 
   const httpServer = createServer(app);
   return httpServer;
