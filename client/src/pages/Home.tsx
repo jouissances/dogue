@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { Menu } from "lucide-react";
+import { Menu, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MenuPanel from "@/components/MenuPanel";
 import BreedSection from "@/components/BreedSection";
@@ -38,7 +38,6 @@ export default function Home() {
       }
     } else if (currentBreedIndex > 0) {
       const prevIndex = currentBreedIndex - 1;
-      setCurrentBreedIndex(prevIndex);
       const element = document.getElementById(sortedBreeds[prevIndex].id);
       if (element) {
         element.scrollIntoView({ behavior: "smooth", inline: "start" });
@@ -47,9 +46,8 @@ export default function Home() {
   }, [currentBreedIndex, sortedBreeds]);
 
   const handleNext = useCallback(() => {
-    if (currentBreedIndex < sortedBreeds.length - 1) {
-      const nextIndex = currentBreedIndex === -1 ? 0 : currentBreedIndex + 1;
-      setCurrentBreedIndex(nextIndex);
+    const nextIndex = currentBreedIndex === -1 ? 0 : currentBreedIndex + 1;
+    if (nextIndex < sortedBreeds.length) {
       const element = document.getElementById(sortedBreeds[nextIndex].id);
       if (element) {
         element.scrollIntoView({ behavior: "smooth", inline: "start" });
@@ -64,12 +62,13 @@ export default function Home() {
 
       const landingElement = document.getElementById("landing");
       const scrollPosition = container.scrollLeft + container.offsetWidth / 2;
+      const tolerance = 10;
 
       if (landingElement) {
         const landingLeft = landingElement.offsetLeft;
         const landingRight = landingLeft + landingElement.offsetWidth;
-        if (scrollPosition >= landingLeft && scrollPosition < landingRight) {
-          setCurrentBreedIndex(-1);
+        if (scrollPosition >= landingLeft - tolerance && scrollPosition < landingRight + tolerance) {
+          setCurrentBreedIndex(prevIndex => prevIndex !== -1 ? -1 : prevIndex);
           return;
         }
       }
@@ -79,8 +78,8 @@ export default function Home() {
         if (section) {
           const left = section.offsetLeft;
           const right = left + section.offsetWidth;
-          if (scrollPosition >= left && scrollPosition < right) {
-            setCurrentBreedIndex(index);
+          if (scrollPosition >= left - tolerance && scrollPosition < right + tolerance) {
+            setCurrentBreedIndex(prevIndex => prevIndex !== index ? index : prevIndex);
           }
         }
       });
@@ -89,6 +88,7 @@ export default function Home() {
     const container = document.getElementById("scroll-container");
     if (container) {
       container.addEventListener("scroll", handleScroll);
+      handleScroll();
       return () => container.removeEventListener("scroll", handleScroll);
     }
   }, [sortedBreeds]);
@@ -166,6 +166,34 @@ export default function Home() {
         onBreedSelect={scrollToBreed}
       />
 
+      {/* Global Navigation Arrows - Only show when not on landing page */}
+      {currentBreedIndex !== -1 && (
+        <>
+          <Button
+            variant="outline"
+            size="icon"
+            className="fixed left-4 top-1/2 transform -translate-y-1/2 z-30 bg-background/80 backdrop-blur-md"
+            onClick={handlePrevious}
+            aria-label="Previous breed"
+            data-testid="button-previous-breed"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </Button>
+          {currentBreedIndex < sortedBreeds.length - 1 && (
+            <Button
+              variant="outline"
+              size="icon"
+              className="fixed right-4 top-1/2 transform -translate-y-1/2 z-30 bg-background/80 backdrop-blur-md"
+              onClick={handleNext}
+              aria-label="Next breed"
+              data-testid="button-next-breed"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </Button>
+          )}
+        </>
+      )}
+
       {/* Horizontal Scroll Container */}
       <div 
         id="scroll-container"
@@ -197,14 +225,10 @@ export default function Home() {
 
         {/* Breed Sections */}
         <main role="main" className="flex">
-          {sortedBreeds.map((breed, index) => (
+          {sortedBreeds.map((breed) => (
             <BreedSection
               key={breed.id}
               breed={breed}
-              onPrevious={handlePrevious}
-              onNext={handleNext}
-              hasPrevious={true}
-              hasNext={index < sortedBreeds.length - 1}
             />
           ))}
         </main>

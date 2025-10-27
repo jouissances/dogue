@@ -1,58 +1,19 @@
 import { DogBreed } from "@shared/schema";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import PhysicalTraits from "./PhysicalTraits";
 import BreedTemperament from "./BreedTemperament";
 import BreedTrivia from "./BreedTrivia";
 
 interface BreedSectionProps {
   breed: DogBreed;
-  onPrevious?: () => void;
-  onNext?: () => void;
-  hasPrevious: boolean;
-  hasNext: boolean;
 }
 
-export default function BreedSection({
-  breed,
-  onPrevious,
-  onNext,
-  hasPrevious,
-  hasNext,
-}: BreedSectionProps) {
+export default function BreedSection({ breed }: BreedSectionProps) {
   return (
     <section
       id={breed.id}
       className="h-screen min-w-full flex items-center relative snap-start snap-always flex-shrink-0"
       aria-labelledby={`breed-${breed.id}-name`}
     >
-      {/* Horizontal Navigation Buttons */}
-      {hasPrevious && (
-        <Button
-          variant="outline"
-          size="icon"
-          className="fixed left-4 top-1/2 transform -translate-y-1/2 z-30 hidden md:flex"
-          onClick={onPrevious}
-          aria-label="Previous breed"
-          data-testid="button-previous-breed"
-        >
-          <ChevronLeft className="h-6 w-6" />
-        </Button>
-      )}
-
-      {hasNext && (
-        <Button
-          variant="outline"
-          size="icon"
-          className="fixed right-4 top-1/2 transform -translate-y-1/2 z-30 hidden md:flex"
-          onClick={onNext}
-          aria-label="Next breed"
-          data-testid="button-next-breed"
-        >
-          <ChevronRight className="h-6 w-6" />
-        </Button>
-      )}
-
       {/* Content */}
       <div className="w-full py-20 px-6">
         <div className="max-w-6xl mx-auto">
