@@ -2,6 +2,14 @@ import { pgTable, text, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+export const coatVariantSchema = z.object({
+  color: z.string(),
+  marking: z.string(),
+  image: z.string(),
+});
+
+export type CoatVariant = z.infer<typeof coatVariantSchema>;
+
 export const dogBreeds = pgTable("dog_breeds", {
   id: varchar("id").primaryKey(),
   name: text("name").notNull(),
@@ -9,6 +17,7 @@ export const dogBreeds = pgTable("dog_breeds", {
   origin: text("origin").notNull(),
   history: text("history").notNull(),
   size: text("size").notNull(),
+  height: text("height").notNull(),
   weight: text("weight").notNull(),
   coat: text("coat").notNull(),
   lifespan: text("lifespan").notNull(),
@@ -19,4 +28,6 @@ export const dogBreeds = pgTable("dog_breeds", {
 
 export const insertDogBreedSchema = createInsertSchema(dogBreeds);
 export type InsertDogBreed = z.infer<typeof insertDogBreedSchema>;
-export type DogBreed = typeof dogBreeds.$inferSelect;
+export type DogBreed = typeof dogBreeds.$inferSelect & {
+  coatVariants?: CoatVariant[];
+};

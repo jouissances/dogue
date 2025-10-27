@@ -1,44 +1,124 @@
-import { Ruler, Weight, Palette, Clock } from "lucide-react";
+import { Ruler, Weight, Palette, Clock, ArrowsUpFromLine } from "lucide-react";
+import { CoatVariant } from "@shared/schema";
+import { Button } from "@/components/ui/button";
 
 interface PhysicalTraitsProps {
   size: string;
+  height: string;
   weight: string;
   coat: string;
   lifespan: string;
+  coatVariants?: CoatVariant[];
+  selectedVariant?: CoatVariant;
+  onVariantSelect?: (variant: CoatVariant) => void;
 }
 
 export default function PhysicalTraits({
   size,
+  height,
   weight,
   coat,
   lifespan,
+  coatVariants,
+  selectedVariant,
+  onVariantSelect,
 }: PhysicalTraitsProps) {
-  const traits = [
-    { icon: Ruler, label: "Size", value: size, testId: "text-size" },
-    { icon: Weight, label: "Weight", value: weight, testId: "text-weight" },
-    { icon: Palette, label: "Coat", value: coat, testId: "text-coat" },
-    { icon: Clock, label: "Lifespan", value: lifespan, testId: "text-lifespan" },
-  ];
-
   return (
-    <div className="space-y-4">
-      {traits.map(({ icon: Icon, label, value, testId }) => (
-        <div
-          key={label}
-          className="flex items-start gap-4 p-4 rounded-lg border border-border bg-card hover:shadow-md transition-shadow"
-          data-testid={`card-trait-${label.toLowerCase()}`}
-        >
-          <div className="p-2 rounded-md bg-primary/10 flex-shrink-0">
-            <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <dt className="font-semibold mb-1">{label}</dt>
-            <dd className="text-muted-foreground text-sm" data-testid={testId}>
-              {value}
-            </dd>
-          </div>
+    <div className="space-y-3">
+      <div className="flex items-start gap-3 p-3 rounded-lg border border-border bg-card"
+        data-testid="card-trait-size"
+      >
+        <div className="p-2 rounded-md bg-primary/10 flex-shrink-0">
+          <Ruler className="h-4 w-4 text-primary" aria-hidden="true" />
         </div>
-      ))}
+        <div className="flex-1 min-w-0">
+          <dt className="font-semibold text-sm mb-1">Size</dt>
+          <dd className="text-muted-foreground text-sm" data-testid="text-size">
+            {size}
+          </dd>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-3 p-3 rounded-lg border border-border bg-card"
+        data-testid="card-trait-height"
+      >
+        <div className="p-2 rounded-md bg-primary/10 flex-shrink-0">
+          <ArrowsUpFromLine className="h-4 w-4 text-primary" aria-hidden="true" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <dt className="font-semibold text-sm mb-1">Height</dt>
+          <dd className="text-muted-foreground text-sm" data-testid="text-height">
+            {height}
+          </dd>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-3 p-3 rounded-lg border border-border bg-card"
+        data-testid="card-trait-weight"
+      >
+        <div className="p-2 rounded-md bg-primary/10 flex-shrink-0">
+          <Weight className="h-4 w-4 text-primary" aria-hidden="true" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <dt className="font-semibold text-sm mb-1">Weight</dt>
+          <dd className="text-muted-foreground text-sm" data-testid="text-weight">
+            {weight}
+          </dd>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-3 p-3 rounded-lg border border-border bg-card"
+        data-testid="card-trait-coat"
+      >
+        <div className="p-2 rounded-md bg-primary/10 flex-shrink-0">
+          <Palette className="h-4 w-4 text-primary" aria-hidden="true" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <dt className="font-semibold text-sm mb-1">Coat</dt>
+          <dd className="text-muted-foreground text-sm mb-2" data-testid="text-coat">
+            {coat}
+          </dd>
+          
+          {coatVariants && coatVariants.length > 0 && (
+            <div className="space-y-2">
+              <div className="text-xs font-medium text-muted-foreground">Colors & Markings:</div>
+              <div className="flex flex-wrap gap-1.5">
+                {coatVariants.map((variant, index) => (
+                  <Button
+                    key={index}
+                    variant={selectedVariant === variant ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => onVariantSelect?.(variant)}
+                    className="text-xs h-7 px-2"
+                    data-testid={`button-coat-variant-${index}`}
+                  >
+                    {variant.color}
+                  </Button>
+                ))}
+              </div>
+              {selectedVariant && (
+                <div className="text-xs text-muted-foreground italic">
+                  {selectedVariant.marking}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="flex items-start gap-3 p-3 rounded-lg border border-border bg-card"
+        data-testid="card-trait-lifespan"
+      >
+        <div className="p-2 rounded-md bg-primary/10 flex-shrink-0">
+          <Clock className="h-4 w-4 text-primary" aria-hidden="true" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <dt className="font-semibold text-sm mb-1">Lifespan</dt>
+          <dd className="text-muted-foreground text-sm" data-testid="text-lifespan">
+            {lifespan}
+          </dd>
+        </div>
+      </div>
     </div>
   );
 }

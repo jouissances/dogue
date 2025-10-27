@@ -1,16 +1,23 @@
 import type { DogBreed } from "@shared/schema";
-import beagleImg from "@assets/generated_images/Beagle_dog_portrait_transparent_0eee134e.png";
-import dachshundImg from "@assets/generated_images/Dachshund_dog_portrait_transparent_be40d679.png";
-import goldenRetrieverImg from "@assets/generated_images/Golden_Retriever_dog_portrait_1f588c8d.png";
+import beagleTricolor from "@assets/generated_images/Beagle_tricolor_coat_portrait_287caa76.png";
+import beagleLemon from "@assets/generated_images/Beagle_lemon_white_portrait_b823738f.png";
+import beagleDefault from "@assets/generated_images/Beagle_dog_portrait_transparent_0eee134e.png";
+import dachshundRed from "@assets/generated_images/Dachshund_red_coat_portrait_dde29856.png";
+import dachshundBlackTan from "@assets/generated_images/Dachshund_black_tan_portrait_3fb34bb8.png";
+import dachshundDefault from "@assets/generated_images/Dachshund_dog_portrait_transparent_be40d679.png";
+import goldenLight from "@assets/generated_images/Golden_Retriever_light_coat_baa89774.png";
+import goldenDark from "@assets/generated_images/Golden_Retriever_dark_coat_f4779b06.png";
+import goldenDefault from "@assets/generated_images/Golden_Retriever_dog_portrait_1f588c8d.png";
 
 export const dogBreeds: DogBreed[] = [
   {
     id: "beagle",
     name: "Beagle",
-    image: beagleImg,
+    image: beagleDefault,
     origin: "England",
     history: "The Beagle's exact origins are somewhat mysterious, but similar hounds existed in England before the Roman arrival. Modern Beagles were developed in Great Britain around the 1830s from several breeds, including the Talbot Hound, the North Country Beagle, the Southern Hound, and possibly the Harrier. They were primarily bred for hunting hare, a sport known as beagling. Their excellent sense of smell and tracking instinct made them exceptional hunting companions.",
     size: "Small to Medium",
+    height: "13-15 inches (33-38 cm)",
     weight: "20-30 lbs (9-13.5 kg)",
     coat: "Short, dense, weather-resistant double coat",
     lifespan: "12-15 years",
@@ -22,15 +29,21 @@ export const dogBreeds: DogBreed[] = [
       "President Lyndon B. Johnson owned several Beagles named Him, Her, and Edgar",
       "The name 'Beagle' may come from the French word 'begueule' meaning 'open throat,' referring to their distinctive howl",
       "Beagles are still used for hunting in packs in several countries, but are also popular detection dogs for prohibited agricultural imports"
+    ],
+    coatVariants: [
+      { color: "Tricolor", marking: "Black, Tan & White", image: beagleTricolor },
+      { color: "Lemon", marking: "Lemon & White", image: beagleLemon },
+      { color: "Red", marking: "Red & White", image: beagleDefault }
     ]
   },
   {
     id: "dachshund",
     name: "Dachshund",
-    image: dachshundImg,
+    image: dachshundDefault,
     origin: "Germany",
     history: "The Dachshund, also known as the 'wiener dog' or 'sausage dog,' was developed in Germany over 300 years ago. The name literally means 'badger dog' in German, as these tenacious hunters were bred to dig into badger dens and flush them out. Their elongated body, short legs, and paddle-like paws made them perfectly suited for this dangerous work. They were also used to hunt rabbits, foxes, and other burrow-dwelling animals. The breed became popular among European royalty, including Queen Victoria, which helped establish their reputation beyond hunting circles.",
     size: "Small (Standard or Miniature)",
+    height: "8-9 inches standard, 5-6 inches miniature",
     weight: "16-32 lbs standard, under 11 lbs miniature",
     coat: "Three varieties: Smooth, Wirehaired, or Longhaired",
     lifespan: "12-16 years",
@@ -42,15 +55,21 @@ export const dogBreeds: DogBreed[] = [
       "Their unique body shape can span a badger's burrow, allowing them to fight the badger underground",
       "During World War I, Dachshunds faced discrimination due to their German heritage, and were sometimes called 'liberty pups'",
       "Crusoe the Celebrity Dachshund has millions of followers on social media and has published bestselling books"
+    ],
+    coatVariants: [
+      { color: "Red", marking: "Solid Red", image: dachshundRed },
+      { color: "Black & Tan", marking: "Black with Tan Points", image: dachshundBlackTan },
+      { color: "Chocolate", marking: "Chocolate & Tan", image: dachshundDefault }
     ]
   },
   {
     id: "golden-retriever",
     name: "Golden Retriever",
-    image: goldenRetrieverImg,
+    image: goldenDefault,
     origin: "Scotland",
     history: "The Golden Retriever was developed in Scotland during the mid-19th century by Lord Tweedmouth, who wanted to create the ultimate hunting dog for the Scottish Highlands. He carefully bred Yellow Retriever 'Nous' with the now-extinct Tweed Water Spaniel 'Belle,' then incorporated Bloodhound, Irish Setter, and more Tweed Water Spaniel into the line. The goal was a dog with exceptional retrieving abilities for both water and land, a soft mouth for carrying game birds, and a loyal, trainable temperament. The breed was officially recognized by the Kennel Club in 1911.",
     size: "Large",
+    height: "21-24 inches (53-61 cm)",
     weight: "55-75 lbs (25-34 kg)",
     coat: "Dense, water-repellent double coat, ranging from cream to dark golden",
     lifespan: "10-12 years",
@@ -62,6 +81,11 @@ export const dogBreeds: DogBreed[] = [
       "The Golden Retriever named Bretagne was one of the search and rescue dogs at Ground Zero after 9/11",
       "They can carry an egg in their mouth without breaking it, demonstrating their famously 'soft mouth'",
       "Golden Retrievers hold several Guinness World Records, including loudest bark and most tennis balls held in the mouth at once (five balls)"
+    ],
+    coatVariants: [
+      { color: "Light Golden", marking: "Cream to Light Gold", image: goldenLight },
+      { color: "Golden", marking: "Classic Golden", image: goldenDefault },
+      { color: "Dark Golden", marking: "Rich Dark Gold", image: goldenDark }
     ]
   }
 ];
