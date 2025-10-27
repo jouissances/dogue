@@ -17,7 +17,7 @@ export default function BreedTemperament({
         {temperament.map((trait) => (
           <span
             key={trait}
-            className="inline-flex items-center px-2.5 py-1 rounded-full bg-primary/10 text-primary font-medium text-xs"
+            className="inline-flex items-center px-2.5 py-1 rounded-full bg-primary/10 text-primary font-medium text-xs border border-primary/30"
             data-testid={`badge-temperament-${trait.toLowerCase()}`}
           >
             {trait}
@@ -26,7 +26,7 @@ export default function BreedTemperament({
       </div>
       
       <p 
-        className="text-xs leading-relaxed text-muted-foreground"
+        className="text-sm leading-relaxed text-muted-foreground"
         data-testid="text-behavior"
       >
         {behavior}
