@@ -1,42 +1,46 @@
-import { useState, useEffect } from "react";
-import { dogBreeds } from "@/data/breeds";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MenuPanel from "@/components/MenuPanel";
 import BreedSection from "@/components/BreedSection";
+import { useBreeds } from "@/hooks/useBreeds";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentBreedIndex, setCurrentBreedIndex] = useState(0);
+  const { data: breeds = [], isLoading, isError } = useBreeds();
 
-  const sortedBreeds = [...dogBreeds].sort((a, b) => a.name.localeCompare(b.name));
+  const sortedBreeds = useMemo(() => 
+    [...breeds].sort((a, b) => a.name.localeCompare(b.name)),
+    [breeds]
+  );
 
   useEffect(() => {
     document.title = "Dog Breed Encyclopedia - Learn About Your Favorite Breeds";
   }, []);
 
-  const scrollToBreed = (breedId: string) => {
+  const scrollToBreed = useCallback((breedId: string) => {
     const element = document.getElementById(breedId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-  };
+  }, []);
 
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     if (currentBreedIndex > 0) {
       const prevIndex = currentBreedIndex - 1;
       setCurrentBreedIndex(prevIndex);
       scrollToBreed(sortedBreeds[prevIndex].id);
     }
-  };
+  }, [currentBreedIndex, sortedBreeds, scrollToBreed]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (currentBreedIndex < sortedBreeds.length - 1) {
       const nextIndex = currentBreedIndex + 1;
       setCurrentBreedIndex(nextIndex);
       scrollToBreed(sortedBreeds[nextIndex].id);
     }
-  };
+  }, [currentBreedIndex, sortedBreeds, scrollToBreed]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,6 +63,8 @@ export default function Home() {
   }, [sortedBreeds]);
 
   useEffect(() => {
+    if (sortedBreeds.length === 0) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowUp") {
         e.preventDefault();
@@ -71,7 +77,39 @@ export default function Home() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentBreedIndex]);
+  }, [currentBreedIndex, sortedBreeds, handlePrevious, handleNext]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading breeds...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-destructive text-lg mb-4">Failed to load breeds</p>
+          <Button onClick={() => window.location.reload()}>Retry</Button>
+        </div>
+      </div>
+    );
+  }
+
+  if (sortedBreeds.length === 0) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-muted-foreground text-lg">No breeds available</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
