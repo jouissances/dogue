@@ -210,16 +210,18 @@ export default function Home() {
       {/* Global Navigation Arrows - Only show when in breed section */}
       {!isOnLanding && (
         <>
-          <Button
-            variant="outline"
-            size="icon"
-            className="fixed left-4 top-1/2 transform -translate-y-1/2 z-30 bg-background/80 backdrop-blur-md"
-            onClick={handlePrevious}
-            aria-label="Previous breed"
-            data-testid="button-previous-breed"
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </Button>
+          {currentBreedIndex > 0 && (
+            <Button
+              variant="outline"
+              size="icon"
+              className="fixed left-4 top-1/2 transform -translate-y-1/2 z-30 bg-background/80 backdrop-blur-md"
+              onClick={handlePrevious}
+              aria-label="Previous breed"
+              data-testid="button-previous-breed"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+          )}
           {currentBreedIndex < sortedBreeds.length - 1 && (
             <Button
               variant="outline"
