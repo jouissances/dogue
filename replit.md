@@ -8,6 +8,7 @@ A responsive, accessible dog breed encyclopedia website with a hybrid vertical-h
 - **Tech Stack**: React, TypeScript, Tailwind CSS, Express.js, Wouter, React Query
 - **Design**: Hybrid vertical-horizontal scrolling layout with snap scrolling
 - **Breeds**: 3 breeds (Beagle, Dachshund, Golden Retriever) with AI-generated images
+- **Interactive Features**: Coat variant selector with live portrait switching
 - **Testing**: End-to-end tests passing successfully
 
 ## Project Architecture
@@ -40,6 +41,11 @@ A responsive, accessible dog breed encyclopedia website with a hybrid vertical-h
 ### Implemented
 - ✅ Hybrid vertical-horizontal scrolling layout with snap scrolling
 - ✅ Alphabetically sorted breed sections
+- ✅ Interactive coat variant selector (3 variants per breed)
+- ✅ Live portrait image switching on variant selection
+- ✅ Height field in physical characteristics
+- ✅ Chip-style temperament display
+- ✅ Compact single-page layout per breed
 - ✅ Slide-out menu panel with search functionality
 - ✅ Navigation arrows on left/right sides (only visible in breed section)
 - ✅ Keyboard navigation (Down/Up for vertical, Left/Right for horizontal)
@@ -67,6 +73,18 @@ A responsive, accessible dog breed encyclopedia website with a hybrid vertical-h
 - Accessibility: WCAG AA compliant, screen reader friendly
 
 ## Recent Changes (October 27, 2025)
+### Latest Update
+- **Interactive coat variant selector**: Added 3 clickable coat variants per breed
+- **Live portrait switching**: Clicking variant buttons instantly changes breed portrait image
+- **9 new AI-generated images**: Created coat variant images for all breeds
+  - Beagle: Tricolor, Lemon & White, Red & White
+  - Dachshund: Red, Black & Tan, Chocolate
+  - Golden Retriever: Light Golden, Golden, Dark Golden
+- **Height field**: Added height measurements to physical characteristics
+- **Chip-style temperament**: Updated to compact rounded badge UI
+- **Compact layout**: Reduced spacing to fit all content on single page per breed
+
+### Previous Updates
 - **Hybrid vertical-horizontal scrolling**: Landing page scrolls down to breed section, then horizontal scrolling between breeds
 - **Updated keyboard navigation**: 
   - Down arrow: Landing → breed section
