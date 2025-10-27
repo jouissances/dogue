@@ -61,9 +61,13 @@ A responsive, accessible dog breed encyclopedia website with a modern vertical s
 ## Recent Changes
 - Removed drop shadows from breed images
 - Implemented full-page snap scrolling
-- Added keyboard navigation with Arrow Up/Down keys
-- Created searchable menu panel
+- Added keyboard navigation with Arrow Up/Down keys  
+- Created searchable menu panel with Escape key support
 - Alphabetically sorted breed display
+- Integrated React Query for API data fetching
+- Implemented Express API routes for breed data
+- Fixed menu close functionality with proper event handling
+- Added accessibility improvements (aria-hidden, pointer-events)
 
 ## User Preferences
 - User prefers vertical full-page scrolling layout over card grids

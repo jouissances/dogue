@@ -19,6 +19,10 @@ export default function Home() {
     document.title = "Dog Breed Encyclopedia - Learn About Your Favorite Breeds";
   }, []);
 
+  const handleCloseMenu = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
+
   const scrollToBreed = useCallback((breedId: string) => {
     const element = document.getElementById(breedId);
     if (element) {
@@ -63,7 +67,7 @@ export default function Home() {
   }, [sortedBreeds]);
 
   useEffect(() => {
-    if (sortedBreeds.length === 0) return;
+    if (sortedBreeds.length === 0 || isMenuOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowUp") {
@@ -77,7 +81,7 @@ export default function Home() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentBreedIndex, sortedBreeds, handlePrevious, handleNext]);
+  }, [currentBreedIndex, sortedBreeds, handlePrevious, handleNext, isMenuOpen]);
 
   if (isLoading) {
     return (
@@ -130,7 +134,7 @@ export default function Home() {
       {/* Menu Panel */}
       <MenuPanel
         isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
+        onClose={handleCloseMenu}
         breeds={sortedBreeds}
         onBreedSelect={scrollToBreed}
       />

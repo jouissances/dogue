@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { DogBreed } from "@shared/schema";
+import type { DogBreed } from "@shared/schema";
 
 interface MenuPanelProps {
   isOpen: boolean;
@@ -23,6 +23,21 @@ export default function MenuPanel({ isOpen, onClose, breeds, onBreedSelect }: Me
     onClose();
   };
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        e.stopPropagation();
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape, { capture: true });
+    return () => window.removeEventListener("keydown", handleEscape, { capture: true });
+  }, [isOpen, onClose]);
+
   return (
     <>
       {/* Overlay */}
@@ -40,6 +55,8 @@ export default function MenuPanel({ isOpen, onClose, breeds, onBreedSelect }: Me
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         aria-label="Breed navigation menu"
+        aria-hidden={!isOpen}
+        style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
