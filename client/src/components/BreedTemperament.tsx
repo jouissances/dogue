@@ -26,7 +26,7 @@ export default function BreedTemperament({
       </div>
       
       <p 
-        className="text-sm leading-relaxed text-muted-foreground"
+        className="text-xs sm:text-sm leading-relaxed text-muted-foreground"
         data-testid="text-behavior"
       >
         {behavior}

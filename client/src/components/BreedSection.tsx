@@ -47,22 +47,22 @@ export default function BreedSection({ breed }: BreedSectionProps) {
       className="h-screen min-w-full flex items-center relative snap-start snap-always flex-shrink-0 overflow-y-auto"
       aria-labelledby={`breed-${breed.id}-name`}
     >
-      <div className="w-full h-full flex flex-col justify-center">
+      <div className="w-full h-full flex flex-col justify-start sm:justify-center py-4 sm:py-0">
         {/* Main Content - Centered Portrait with Sidebar Info */}
-        <div className="px-8 py-6">
-          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="px-4 sm:px-6 md:px-8 py-4 sm:py-6">
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-12 items-start lg:items-center">
             {/* Left Column - Breed Info */}
-            <div className="lg:col-span-3 space-y-6">
+            <div className="lg:col-span-3 space-y-3 sm:space-y-4 lg:space-y-6">
               <div>
                 <h2
                   id={`breed-${breed.id}-name`}
-                  className="text-5xl font-serif font-bold mb-2"
+                  className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold mb-1 sm:mb-2"
                   data-testid={`text-breed-name-${breed.id}`}
                 >
                   {breed.name}
                 </h2>
                 {breed.group && (
-                  <p className="text-sm text-muted-foreground mb-1" data-testid="text-breed-group">
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-1" data-testid="text-breed-group">
                     {breed.group}
                   </p>
                 )}
@@ -71,25 +71,27 @@ export default function BreedSection({ breed }: BreedSectionProps) {
                 </p>
               </div>
               
-              <BreedTemperament
-                temperament={breed.temperament}
-                behavior={breed.behavior}
-              />
+              <div className="hidden lg:block">
+                <BreedTemperament
+                  temperament={breed.temperament}
+                  behavior={breed.behavior}
+                />
+              </div>
             </div>
 
             {/* Center Column - Large Portrait */}
-            <div className="lg:col-span-6 flex justify-center items-center">
+            <div className="lg:col-span-6 flex justify-center items-center order-first lg:order-none">
               <img
                 src={currentImage}
                 alt={`${breed.name} dog portrait${selectedVariant ? ` - ${selectedVariant.color}` : ''}`}
-                className="max-h-[600px] w-auto object-contain transition-all duration-300"
+                className="max-h-[200px] sm:max-h-[300px] md:max-h-[400px] lg:max-h-[600px] w-auto object-contain transition-all duration-300"
                 data-testid={`img-breed-${breed.id}`}
               />
             </div>
 
             {/* Right Column - Physical Traits */}
             <div className="lg:col-span-3">
-              <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-4">
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3 sm:mb-4">
                 Physical Characteristics
               </h3>
               <PhysicalTraits
@@ -106,17 +108,25 @@ export default function BreedSection({ breed }: BreedSectionProps) {
                 onVariantSelect={setSelectedVariant}
               />
             </div>
+
+            {/* Mobile Temperament - Show below traits on mobile */}
+            <div className="lg:hidden col-span-1">
+              <BreedTemperament
+                temperament={breed.temperament}
+                behavior={breed.behavior}
+              />
+            </div>
           </div>
         </div>
 
         {/* Bottom Section - History and Trivia */}
-        <div className="border-t bg-accent/10 px-8 py-5 mt-2">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="border-t bg-accent/10 px-4 sm:px-6 md:px-8 py-3 sm:py-4 lg:py-5 mt-2">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
             <div>
-              <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3">
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-2 sm:mb-3">
                 History
               </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">{breed.history}</p>
+              <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">{breed.history}</p>
             </div>
             <BreedTrivia trivia={breed.trivia} />
           </div>

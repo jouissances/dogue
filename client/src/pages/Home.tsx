@@ -183,16 +183,16 @@ export default function Home() {
   return (
     <div id="main-container" className="bg-background overflow-y-auto overflow-x-hidden h-screen snap-y snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       {/* Fixed Header with Menu Button */}
-      <header className="fixed top-0 right-0 z-40 p-4">
+      <header className="fixed top-0 right-0 z-40 p-3 sm:p-4">
         <Button
           variant="outline"
           size="icon"
           onClick={() => setIsMenuOpen(true)}
           aria-label="Open menu"
           data-testid="button-open-menu"
-          className="bg-background/80 backdrop-blur-md"
+          className="bg-background/80 backdrop-blur-md h-10 w-10 sm:h-10 sm:w-10"
         >
-          <Menu className="h-5 w-5" />
+          <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
         </Button>
       </header>
 
@@ -214,24 +214,24 @@ export default function Home() {
             <Button
               variant="outline"
               size="icon"
-              className="fixed left-4 top-1/2 transform -translate-y-1/2 z-30 bg-background/80 backdrop-blur-md"
+              className="fixed left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-30 bg-background/80 backdrop-blur-md h-10 w-10 sm:h-10 sm:w-10"
               onClick={handlePrevious}
               aria-label="Previous breed"
               data-testid="button-previous-breed"
             >
-              <ChevronLeft className="h-6 w-6" />
+              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
             </Button>
           )}
           {currentBreedIndex < sortedBreeds.length - 1 && (
             <Button
               variant="outline"
               size="icon"
-              className="fixed right-4 top-1/2 transform -translate-y-1/2 z-30 bg-background/80 backdrop-blur-md"
+              className="fixed right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-30 bg-background/80 backdrop-blur-md h-10 w-10 sm:h-10 sm:w-10"
               onClick={handleNext}
               aria-label="Next breed"
               data-testid="button-next-breed"
             >
-              <ChevronRight className="h-6 w-6" />
+              <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
             </Button>
           )}
         </>
@@ -240,13 +240,13 @@ export default function Home() {
       {/* Landing Section */}
       <section 
         id="landing"
-        className="h-screen min-h-screen flex items-center justify-center snap-start snap-always"
+        className="h-screen min-h-screen flex items-center justify-center snap-start snap-always px-4"
       >
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">
+        <div className="max-w-4xl mx-auto w-full text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold mb-4 sm:mb-6 leading-tight">
             Dog Breed Encyclopedia
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto px-2">
             Explore detailed information about popular dog breeds, their history, 
             characteristics, and fascinating facts.
           </p>
@@ -254,6 +254,7 @@ export default function Home() {
             size="lg"
             onClick={scrollToBreedSection}
             data-testid="button-start-exploring"
+            className="h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base"
           >
             Start Exploring
           </Button>
