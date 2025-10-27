@@ -8,6 +8,7 @@ import { useBreeds } from "@/hooks/useBreeds";
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentBreedIndex, setCurrentBreedIndex] = useState(-1);
+  const [isOnLanding, setIsOnLanding] = useState(true);
   const { data: breeds = [], isLoading, isError } = useBreeds();
 
   const sortedBreeds = useMemo(() => 
@@ -23,20 +24,31 @@ export default function Home() {
     setIsMenuOpen(false);
   }, []);
 
+  const scrollToBreedSection = useCallback(() => {
+    const breedContainer = document.getElementById("breed-container");
+    if (breedContainer) {
+      breedContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+      setIsOnLanding(false);
+    }
+  }, []);
+
+  const scrollToLanding = useCallback(() => {
+    const landing = document.getElementById("landing");
+    if (landing) {
+      landing.scrollIntoView({ behavior: "smooth", block: "start" });
+      setIsOnLanding(true);
+    }
+  }, []);
+
   const scrollToBreed = useCallback((breedId: string) => {
     const element = document.getElementById(breedId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: "smooth", inline: "start" });
     }
   }, []);
 
   const handlePrevious = useCallback(() => {
-    if (currentBreedIndex === 0) {
-      const landingElement = document.getElementById("landing");
-      if (landingElement) {
-        landingElement.scrollIntoView({ behavior: "smooth", inline: "start" });
-      }
-    } else if (currentBreedIndex > 0) {
+    if (currentBreedIndex > 0) {
       const prevIndex = currentBreedIndex - 1;
       const element = document.getElementById(sortedBreeds[prevIndex].id);
       if (element) {
@@ -46,8 +58,8 @@ export default function Home() {
   }, [currentBreedIndex, sortedBreeds]);
 
   const handleNext = useCallback(() => {
-    const nextIndex = currentBreedIndex === -1 ? 0 : currentBreedIndex + 1;
-    if (nextIndex < sortedBreeds.length) {
+    if (currentBreedIndex < sortedBreeds.length - 1) {
+      const nextIndex = currentBreedIndex + 1;
       const element = document.getElementById(sortedBreeds[nextIndex].id);
       if (element) {
         element.scrollIntoView({ behavior: "smooth", inline: "start" });
@@ -56,22 +68,38 @@ export default function Home() {
   }, [currentBreedIndex, sortedBreeds]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const container = document.getElementById("scroll-container");
+    const handleVerticalScroll = () => {
+      const landing = document.getElementById("landing");
+      const breedContainer = document.getElementById("breed-container");
+      if (!landing || !breedContainer) return;
+
+      const landingRect = landing.getBoundingClientRect();
+      const breedRect = breedContainer.getBoundingClientRect();
+
+      if (landingRect.top >= -100 && landingRect.top <= 100) {
+        setIsOnLanding(true);
+      } else if (breedRect.top >= -100 && breedRect.top <= 100) {
+        setIsOnLanding(false);
+      }
+    };
+
+    const mainContainer = document.getElementById("main-container");
+    if (mainContainer) {
+      mainContainer.addEventListener("scroll", handleVerticalScroll);
+      handleVerticalScroll();
+      return () => mainContainer.removeEventListener("scroll", handleVerticalScroll);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isOnLanding) return;
+
+    const handleHorizontalScroll = () => {
+      const container = document.getElementById("breeds-scroll");
       if (!container) return;
 
-      const landingElement = document.getElementById("landing");
       const scrollPosition = container.scrollLeft + container.offsetWidth / 2;
       const tolerance = 10;
-
-      if (landingElement) {
-        const landingLeft = landingElement.offsetLeft;
-        const landingRight = landingLeft + landingElement.offsetWidth;
-        if (scrollPosition >= landingLeft - tolerance && scrollPosition < landingRight + tolerance) {
-          setCurrentBreedIndex(prevIndex => prevIndex !== -1 ? -1 : prevIndex);
-          return;
-        }
-      }
 
       const sections = sortedBreeds.map((breed) => document.getElementById(breed.id));
       sections.forEach((section, index) => {
@@ -85,30 +113,40 @@ export default function Home() {
       });
     };
 
-    const container = document.getElementById("scroll-container");
+    const container = document.getElementById("breeds-scroll");
     if (container) {
-      container.addEventListener("scroll", handleScroll);
-      handleScroll();
-      return () => container.removeEventListener("scroll", handleScroll);
+      container.addEventListener("scroll", handleHorizontalScroll);
+      handleHorizontalScroll();
+      return () => container.removeEventListener("scroll", handleHorizontalScroll);
     }
-  }, [sortedBreeds]);
+  }, [sortedBreeds, isOnLanding]);
 
   useEffect(() => {
     if (sortedBreeds.length === 0 || isMenuOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        handlePrevious();
-      } else if (e.key === "ArrowRight") {
-        e.preventDefault();
-        handleNext();
+      if (isOnLanding) {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          scrollToBreedSection();
+        }
+      } else {
+        if (e.key === "ArrowUp") {
+          e.preventDefault();
+          scrollToLanding();
+        } else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          handlePrevious();
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          handleNext();
+        }
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentBreedIndex, sortedBreeds, handlePrevious, handleNext, isMenuOpen]);
+  }, [currentBreedIndex, sortedBreeds, handlePrevious, handleNext, isMenuOpen, isOnLanding, scrollToBreedSection, scrollToLanding]);
 
   if (isLoading) {
     return (
@@ -143,7 +181,7 @@ export default function Home() {
   }
 
   return (
-    <div className="h-screen bg-background overflow-hidden">
+    <div id="main-container" className="bg-background overflow-y-auto overflow-x-hidden h-screen snap-y snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       {/* Fixed Header with Menu Button */}
       <header className="fixed top-0 right-0 z-40 p-4">
         <Button
@@ -163,11 +201,14 @@ export default function Home() {
         isOpen={isMenuOpen}
         onClose={handleCloseMenu}
         breeds={sortedBreeds}
-        onBreedSelect={scrollToBreed}
+        onBreedSelect={(breedId) => {
+          scrollToBreedSection();
+          setTimeout(() => scrollToBreed(breedId), 500);
+        }}
       />
 
-      {/* Global Navigation Arrows - Only show when not on landing page */}
-      {currentBreedIndex !== -1 && (
+      {/* Global Navigation Arrows - Only show when in breed section */}
+      {!isOnLanding && (
         <>
           <Button
             variant="outline"
@@ -194,48 +235,50 @@ export default function Home() {
         </>
       )}
 
-      {/* Horizontal Scroll Container */}
-      <div 
-        id="scroll-container"
-        className="h-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory flex"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      {/* Landing Section */}
+      <section 
+        id="landing"
+        className="h-screen min-h-screen flex items-center justify-center snap-start snap-always"
       >
-        {/* Landing Section */}
-        <section 
-          id="landing"
-          className="h-screen min-w-full flex items-center justify-center snap-start snap-always flex-shrink-0"
-        >
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">
-              Dog Breed Encyclopedia
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-              Explore detailed information about popular dog breeds, their history, 
-              characteristics, and fascinating facts.
-            </p>
-            <Button
-              size="lg"
-              onClick={() => scrollToBreed(sortedBreeds[0].id)}
-              data-testid="button-start-exploring"
-            >
-              Start Exploring
-            </Button>
-          </div>
-        </section>
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">
+            Dog Breed Encyclopedia
+          </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+            Explore detailed information about popular dog breeds, their history, 
+            characteristics, and fascinating facts.
+          </p>
+          <Button
+            size="lg"
+            onClick={scrollToBreedSection}
+            data-testid="button-start-exploring"
+          >
+            Start Exploring
+          </Button>
+        </div>
+      </section>
 
-        {/* Breed Sections */}
-        <main role="main" className="flex">
+      {/* Breed Section Container - Horizontal Scroll */}
+      <section 
+        id="breed-container"
+        className="h-screen min-h-screen snap-start snap-always relative overflow-hidden"
+      >
+        <div 
+          id="breeds-scroll"
+          className="h-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory flex"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {sortedBreeds.map((breed) => (
             <BreedSection
               key={breed.id}
               breed={breed}
             />
           ))}
-        </main>
-      </div>
+        </div>
+      </section>
 
       <style>{`
-        #scroll-container::-webkit-scrollbar {
+        ::-webkit-scrollbar {
           display: none;
         }
       `}</style>
