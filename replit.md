@@ -6,9 +6,10 @@ A responsive, accessible dog breed encyclopedia website with a hybrid vertical-h
 ## Current State
 - **Status**: ✅ Complete and fully functional
 - **Tech Stack**: React, TypeScript, Tailwind CSS, Express.js, Wouter, React Query
-- **Design**: Hybrid vertical-horizontal scrolling layout with snap scrolling
-- **Breeds**: 3 breeds (Beagle, Dachshund, Golden Retriever) with AI-generated images
-- **Interactive Features**: Coat variant selector with live portrait switching
+- **Design**: Centered portrait layout - dog is the main star with 3-column grid
+- **Breeds**: 3 breeds (Beagle, Dachshund, Golden Retriever) with transparent background images
+- **Images**: 15 AI-generated transparent portraits (3 Beagle + 9 Dachshund + 3 Golden Retriever)
+- **Interactive Features**: Coat type and coat color selectors with live portrait switching
 - **Testing**: End-to-end tests passing successfully
 
 ## Project Architecture
@@ -73,16 +74,25 @@ A responsive, accessible dog breed encyclopedia website with a hybrid vertical-h
 - Accessibility: WCAG AA compliant, screen reader friendly
 
 ## Recent Changes (October 27, 2025)
-### Latest Update
+### Latest Update - Portrait-Focused Redesign
+- **All transparent background images**: Regenerated all 15 portraits with transparent backgrounds for clean presentation
+- **Portrait-centered layout**: Complete redesign with 3-column grid (3-6-3)
+  - Left: Breed name, origin, temperament
+  - Center: Large portrait (max-height 600px) - THE STAR
+  - Right: Physical characteristics
+  - Bottom: History and trivia on accent background
+- **Coat type interactive selection**: Dachshund has 3 coat types (Smooth, Wirehaired, Longhaired)
+  - 9 unique Dachshund images (3 types × 3 colors)
+  - Clicking coat type filters color variants and updates portrait
+  - Breeds with single type (Beagle, Golden Retriever) show only color selection
+- **Enhanced temperament display**: Badges now have borders, description text increased to readable size
+- **Better whitespace usage**: Layout maximizes portrait prominence while organizing info efficiently
+
+### Previous Updates
 - **Interactive coat variant selector**: Added 3 clickable coat variants per breed
 - **Live portrait switching**: Clicking variant buttons instantly changes breed portrait image
-- **9 new AI-generated images**: Created coat variant images for all breeds
-  - Beagle: Tricolor, Lemon & White, Red & White
-  - Dachshund: Red, Black & Tan, Chocolate
-  - Golden Retriever: Light Golden, Golden, Dark Golden
 - **Height field**: Added height measurements to physical characteristics
 - **Chip-style temperament**: Updated to compact rounded badge UI
-- **Compact layout**: Reduced spacing to fit all content on single page per breed
 
 ### Previous Updates
 - **Hybrid vertical-horizontal scrolling**: Landing page scrolls down to breed section, then horizontal scrolling between breeds
