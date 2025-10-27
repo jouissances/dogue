@@ -77,7 +77,18 @@ A responsive, accessible dog breed encyclopedia website with a hybrid vertical-h
 - Accessibility: WCAG AA compliant, screen reader friendly
 
 ## Recent Changes (October 27, 2025)
-### Latest Update - Major Content Expansion (12 New Breeds)
+### Latest Update - Mobile Responsiveness Improvements
+- **Fully mobile-responsive design**: Application now works seamlessly on mobile devices (phones and tablets)
+  - Landing page: Responsive text sizes (3xl on mobile → 7xl on desktop) and button sizing
+  - BreedSection: Grid stacks vertically on mobile, portrait appears first for optimal viewing
+  - Navigation arrows: Properly positioned on mobile (left-2/right-2 on mobile, left-4/right-4 on desktop)
+  - Menu panel: Full-width on mobile devices (< 640px), fixed 320px width on larger screens
+- **Responsive image sizing**: Dog portraits scale appropriately for viewport (200px mobile → 600px desktop)
+- **Mobile-optimized spacing**: Reduced padding and gaps on small screens for better content density
+- **Tested on multiple viewports**: iPhone 12 Pro (390x844) and iPad (768x1024) viewports verified working
+- **Temperament positioning**: Shown on left column for desktop, below traits on mobile for better flow
+
+### Previous Update - Major Content Expansion (12 New Breeds)
 - **Added 12 new dog breeds**: Encyclopedia expanded from 3 to 15 breeds (A through G alphabetically)
   - New breeds: Affenpinscher, Afghan Hound, Airedale Terrier, Akita, Alaskan Klee Kai, Alaskan Malamute, American Bulldog, American English Coonhound, American Eskimo Dog, American Foxhound, American Hairless Terrier, American Leopard Hound
 - **Generated 36 new AI images**: 3 coat color variants per breed with transparent backgrounds
