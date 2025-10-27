@@ -49,7 +49,7 @@ export default function BreedSection({ breed }: BreedSectionProps) {
     >
       <div className="w-full h-full flex flex-col">
         {/* Main Content - Centered Portrait with Sidebar Info */}
-        <div className="flex-1 flex items-center justify-center px-8 py-12">
+        <div className="flex-1 flex items-center justify-center px-8 py-8">
           <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Column - Breed Info */}
             <div className="lg:col-span-3 space-y-6">
@@ -105,7 +105,7 @@ export default function BreedSection({ breed }: BreedSectionProps) {
         </div>
 
         {/* Bottom Section - History and Trivia */}
-        <div className="border-t bg-accent/10 px-8 py-6">
+        <div className="border-t bg-accent/10 px-8 py-4">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
               <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3">
