@@ -61,14 +61,14 @@ export default function BreedSection({ breed }: BreedSectionProps) {
                 >
                   {breed.name}
                 </h2>
-                <p className="text-sm text-muted-foreground mb-1">
-                  Origin: {breed.origin}
-                </p>
                 {breed.group && (
-                  <p className="text-xs text-muted-foreground italic" data-testid="text-breed-group">
+                  <p className="text-sm text-muted-foreground mb-1" data-testid="text-breed-group">
                     {breed.group}
                   </p>
                 )}
+                <p className="text-xs text-muted-foreground italic">
+                  Origin: {breed.origin}
+                </p>
               </div>
               
               <BreedTemperament

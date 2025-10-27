@@ -39,25 +39,14 @@ export default function MenuPanel({ isOpen, onClose, breeds, onBreedSelect }: Me
   }, [isOpen, onClose]);
 
   return (
-    <>
-      {/* Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 transition-opacity"
-          onClick={onClose}
-          aria-hidden="true"
-        />
-      )}
-
-      {/* Menu Panel */}
-      <aside
-        className={`fixed top-0 right-0 h-full w-80 bg-card border-l border-border z-50 transform transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-        aria-label="Breed navigation menu"
-        aria-hidden={!isOpen}
-        style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
-      >
+    <aside
+      className={`fixed top-0 right-0 h-full w-80 bg-background border-l border-border shadow-2xl z-50 transform transition-transform duration-300 ${
+        isOpen ? "translate-x-0" : "translate-x-full"
+      }`}
+      aria-label="Breed navigation menu"
+      aria-hidden={!isOpen}
+      style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
+    >
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border">
@@ -109,7 +98,6 @@ export default function MenuPanel({ isOpen, onClose, breeds, onBreedSelect }: Me
             )}
           </nav>
         </div>
-      </aside>
-    </>
+    </aside>
   );
 }
