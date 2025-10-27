@@ -65,15 +65,15 @@ const initialBreeds: DogBreed[] = [
       "Beagles are still used for hunting in packs in several countries, but are also popular detection dogs for prohibited agricultural imports"
     ],
     coatVariants: [
-      { color: "Tricolor", marking: "Black, Tan & White", image: "/generated_images/Beagle_tricolor_coat_portrait_287caa76.png" },
-      { color: "Lemon", marking: "Lemon & White", image: "/generated_images/Beagle_lemon_white_portrait_b823738f.png" },
-      { color: "Red", marking: "Red & White", image: "/generated_images/Beagle_dog_portrait_transparent_0eee134e.png" }
+      { color: "Tricolor", marking: "Black, Tan & White", image: "/generated_images/Beagle_tricolor_transparent_portrait_58e03694.png" },
+      { color: "Lemon", marking: "Lemon & White", image: "/generated_images/Beagle_lemon_white_transparent_e7e01364.png" },
+      { color: "Red", marking: "Red & White", image: "/generated_images/Beagle_red_white_transparent_3a112a98.png" }
     ]
   },
   {
     id: "dachshund",
     name: "Dachshund",
-    image: "/generated_images/Dachshund_dog_portrait_transparent_be40d679.png",
+    image: "/generated_images/Dachshund_smooth_red_transparent_4c657c7f.png",
     origin: "Germany",
     history: "The Dachshund, also known as the 'wiener dog' or 'sausage dog,' was developed in Germany over 300 years ago. The name literally means 'badger dog' in German, as these tenacious hunters were bred to dig into badger dens and flush them out. Their elongated body, short legs, and paddle-like paws made them perfectly suited for this dangerous work. They were also used to hunt rabbits, foxes, and other burrow-dwelling animals. The breed became popular among European royalty, including Queen Victoria, which helped establish their reputation beyond hunting circles.",
     size: "Small (Standard or Miniature)",
@@ -90,16 +90,23 @@ const initialBreeds: DogBreed[] = [
       "During World War I, Dachshunds faced discrimination due to their German heritage, and were sometimes called 'liberty pups'",
       "Crusoe the Celebrity Dachshund has millions of followers on social media and has published bestselling books"
     ],
+    coatTypes: ["Smooth", "Wirehaired", "Longhaired"],
     coatVariants: [
-      { color: "Red", marking: "Solid Red", image: "/generated_images/Dachshund_red_coat_portrait_dde29856.png" },
-      { color: "Black & Tan", marking: "Black with Tan Points", image: "/generated_images/Dachshund_black_tan_portrait_3fb34bb8.png" },
-      { color: "Chocolate", marking: "Chocolate & Tan", image: "/generated_images/Dachshund_dog_portrait_transparent_be40d679.png" }
+      { color: "Red", marking: "Solid Red", coatType: "Smooth", image: "/generated_images/Dachshund_smooth_red_transparent_4c657c7f.png" },
+      { color: "Black & Tan", marking: "Black with Tan Points", coatType: "Smooth", image: "/generated_images/Dachshund_smooth_black_tan_transparent_b55d7a37.png" },
+      { color: "Chocolate", marking: "Chocolate & Tan", coatType: "Smooth", image: "/generated_images/Dachshund_smooth_chocolate_transparent_74c310e7.png" },
+      { color: "Red", marking: "Solid Red", coatType: "Wirehaired", image: "/generated_images/Dachshund_wirehaired_red_transparent_9504f6bf.png" },
+      { color: "Black & Tan", marking: "Black with Tan Points", coatType: "Wirehaired", image: "/generated_images/Dachshund_wirehaired_black_tan_transparent_562d486a.png" },
+      { color: "Chocolate", marking: "Chocolate & Tan", coatType: "Wirehaired", image: "/generated_images/Dachshund_wirehaired_chocolate_transparent_08d6e514.png" },
+      { color: "Red", marking: "Solid Red", coatType: "Longhaired", image: "/generated_images/Dachshund_longhaired_red_transparent_b6beb158.png" },
+      { color: "Black & Tan", marking: "Black with Tan Points", coatType: "Longhaired", image: "/generated_images/Dachshund_longhaired_black_tan_transparent_f2c050be.png" },
+      { color: "Chocolate", marking: "Chocolate & Tan", coatType: "Longhaired", image: "/generated_images/Dachshund_longhaired_chocolate_transparent_cba29bda.png" }
     ]
   },
   {
     id: "golden-retriever",
     name: "Golden Retriever",
-    image: "/generated_images/Golden_Retriever_dog_portrait_1f588c8d.png",
+    image: "/generated_images/Golden_Retriever_golden_transparent_0f60bab7.png",
     origin: "Scotland",
     history: "The Golden Retriever was developed in Scotland during the mid-19th century by Lord Tweedmouth, who wanted to create the ultimate hunting dog for the Scottish Highlands. He carefully bred Yellow Retriever 'Nous' with the now-extinct Tweed Water Spaniel 'Belle,' then incorporated Bloodhound, Irish Setter, and more Tweed Water Spaniel into the line. The goal was a dog with exceptional retrieving abilities for both water and land, a soft mouth for carrying game birds, and a loyal, trainable temperament. The breed was officially recognized by the Kennel Club in 1911.",
     size: "Large",
@@ -117,9 +124,9 @@ const initialBreeds: DogBreed[] = [
       "Golden Retrievers hold several Guinness World Records, including loudest bark and most tennis balls held in the mouth at once (five balls)"
     ],
     coatVariants: [
-      { color: "Light Golden", marking: "Cream to Light Gold", image: "/generated_images/Golden_Retriever_light_coat_baa89774.png" },
-      { color: "Golden", marking: "Classic Golden", image: "/generated_images/Golden_Retriever_dog_portrait_1f588c8d.png" },
-      { color: "Dark Golden", marking: "Rich Dark Gold", image: "/generated_images/Golden_Retriever_dark_coat_f4779b06.png" }
+      { color: "Light Golden", marking: "Cream to Light Gold", image: "/generated_images/Golden_Retriever_light_transparent_b2924cae.png" },
+      { color: "Golden", marking: "Classic Golden", image: "/generated_images/Golden_Retriever_golden_transparent_0f60bab7.png" },
+      { color: "Dark Golden", marking: "Rich Dark Gold", image: "/generated_images/Golden_Retriever_dark_transparent_3fe93b1d.png" }
     ]
   }
 ];

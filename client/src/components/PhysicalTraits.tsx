@@ -8,6 +8,9 @@ interface PhysicalTraitsProps {
   weight: string;
   coat: string;
   lifespan: string;
+  coatTypes?: string[];
+  selectedCoatType?: string;
+  onCoatTypeSelect?: (coatType: string) => void;
   coatVariants?: CoatVariant[];
   selectedVariant?: CoatVariant;
   onVariantSelect?: (variant: CoatVariant) => void;
@@ -19,12 +22,15 @@ export default function PhysicalTraits({
   weight,
   coat,
   lifespan,
+  coatTypes,
+  selectedCoatType,
+  onCoatTypeSelect,
   coatVariants,
   selectedVariant,
   onVariantSelect,
 }: PhysicalTraitsProps) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2.5">
       <div className="flex items-start gap-3 p-3 rounded-lg border border-border bg-card"
         data-testid="card-trait-size"
       >
@@ -78,6 +84,26 @@ export default function PhysicalTraits({
           <dd className="text-muted-foreground text-sm mb-2" data-testid="text-coat">
             {coat}
           </dd>
+          
+          {coatTypes && coatTypes.length > 1 && (
+            <div className="space-y-2 mb-3">
+              <div className="text-xs font-medium text-muted-foreground">Coat Type:</div>
+              <div className="flex flex-wrap gap-1.5">
+                {coatTypes.map((type, index) => (
+                  <Button
+                    key={index}
+                    variant={selectedCoatType === type ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => onCoatTypeSelect?.(type)}
+                    className="text-xs h-7 px-2"
+                    data-testid={`button-coat-type-${index}`}
+                  >
+                    {type}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          )}
           
           {coatVariants && coatVariants.length > 0 && (
             <div className="space-y-2">

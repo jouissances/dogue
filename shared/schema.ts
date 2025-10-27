@@ -5,6 +5,7 @@ import { z } from "zod";
 export const coatVariantSchema = z.object({
   color: z.string(),
   marking: z.string(),
+  coatType: z.string().optional(),
   image: z.string(),
 });
 
@@ -29,5 +30,6 @@ export const dogBreeds = pgTable("dog_breeds", {
 export const insertDogBreedSchema = createInsertSchema(dogBreeds);
 export type InsertDogBreed = z.infer<typeof insertDogBreedSchema>;
 export type DogBreed = typeof dogBreeds.$inferSelect & {
+  coatTypes?: string[];
   coatVariants?: CoatVariant[];
 };
