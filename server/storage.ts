@@ -47,7 +47,7 @@ const initialBreeds: DogBreed[] = [
   {
     id: "affenpinscher",
     name: "Affenpinscher",
-    image: "/generated_images/Affenpinscher_black_coat_portrait_01e8d695.png",
+    image: "/generated_images/affenpinscher_black.png",
     origin: "Germany",
     group: "Toy Group",
     history: "The Affenpinscher originated in Germany during the 17th century, with roots possibly dating back to the 1400s. The name translates to 'monkey terrier' in German, referencing their distinctive monkey-like facial expression. Originally bred as ratters to kill mice and rats in stables, shops, and homes during the plague era, these small dogs eventually transitioned from working roles to cherished companion dogs for German society. They influenced the development of other breeds including the Brussels Griffon and Miniature Schnauzer.",
@@ -66,15 +66,15 @@ const initialBreeds: DogBreed[] = [
       "The French nicknamed them 'diablotin moustachu' meaning 'mustached little devil'"
     ],
     coatVariants: [
-      { color: "Black", marking: "Solid Black", image: "/generated_images/Affenpinscher_black_coat_portrait_01e8d695.png" },
-      { color: "Silver", marking: "Silver Gray", image: "/generated_images/Affenpinscher_silver_gray_coat_3d2d0283.png" },
-      { color: "Red", marking: "Red to Tan", image: "/generated_images/Affenpinscher_red_coat_portrait_6ef22417.png" }
+      { color: "Black", marking: "Solid Black", image: "/generated_images/affenpinscher_black.png" },
+      { color: "Silver", marking: "Silver Gray", image: "/generated_images/affenpinscher_silver.png" },
+      { color: "Red", marking: "Red to Tan", image: "/generated_images/affenpinscher_red.png" }
     ]
   },
   {
     id: "afghan-hound",
     name: "Afghan Hound",
-    image: "/generated_images/Afghan_Hound_cream_coat_30acc900.png",
+    image: "/generated_images/afghan_hound_cream.png",
     origin: "Afghanistan",
     group: "Hound Group (Sighthound)",
     history: "The Afghan Hound is one of the most ancient dog breeds, with origins dating back thousands of years to the cold mountains of Afghanistan, where it was called Tazi. Bred by nomadic tribes to hunt large game including gazelle, hare, and even leopards across harsh mountainous terrain, these elegant sighthounds were prized for their speed, agility, and ability to think independently. British soldiers brought Afghan Hounds to England in the late 1800s. The modern breed descends from two main strains: the Bell-Murray desert type and the Ghazni mountain type. The breed was recognized by the AKC in 1926.",
@@ -93,15 +93,15 @@ const initialBreeds: DogBreed[] = [
       "The breed's distinctive topknot and flowing coat made them popular in dog shows and as artistic subjects"
     ],
     coatVariants: [
-      { color: "Cream", marking: "Light Cream", image: "/generated_images/Afghan_Hound_cream_coat_30acc900.png" },
-      { color: "Black", marking: "Solid Black", image: "/generated_images/Afghan_Hound_black_coat_4c450e1f.png" },
-      { color: "Red", marking: "Red-Gold", image: "/generated_images/Afghan_Hound_red_coat_ca2d360e.png" }
+      { color: "Cream", marking: "Light Cream", image: "/generated_images/afghan_hound_cream.png" },
+      { color: "Black", marking: "Solid Black", image: "/generated_images/afghan_hound_black.png" },
+      { color: "Red", marking: "Red-Gold", image: "/generated_images/afghan_hound_red.png" }
     ]
   },
   {
     id: "airedale-terrier",
     name: "Airedale Terrier",
-    image: "/generated_images/Airedale_Terrier_tan_black_6183715b.png",
+    image: "/generated_images/airedale_terrier_black_tan.png",
     origin: "England",
     group: "Terrier Group (King of Terriers)",
     history: "The Airedale Terrier, known as the 'King of Terriers' due to being the largest terrier breed, was developed in the Aire Valley of Yorkshire, England during the mid-1800s. Working-class factory workers crossed the Old English Black and Tan Terrier with Otterhounds to create a versatile hunting and working dog that could hunt otters, rats, and upland game. Originally called Waterside Terriers, they were officially named Airedale Terriers and recognized by the Kennel Club in 1886. They served with distinction in WWI as messenger dogs and sentries, and were owned by several U.S. Presidents.",
@@ -120,15 +120,15 @@ const initialBreeds: DogBreed[] = [
       "Their versatility made them successful hunters of everything from rats to bears"
     ],
     coatVariants: [
-      { color: "Black & Tan", marking: "Black Saddle with Tan", image: "/generated_images/Airedale_Terrier_tan_black_6183715b.png" },
-      { color: "Grizzle & Tan", marking: "Grizzle with Tan Points", image: "/generated_images/Airedale_Terrier_grizzle_tan_64493ad4.png" },
-      { color: "Dark Grizzle", marking: "Dark Grizzle & Tan", image: "/generated_images/Airedale_Terrier_dark_grizzle_4a879e67.png" }
+      { color: "Black & Tan", marking: "Black Saddle with Tan", image: "/generated_images/airedale_terrier_black_tan.png" },
+      { color: "Grizzle & Tan", marking: "Grizzle with Tan Points", image: "/generated_images/airedale_terrier_grizzle_tan.png" },
+      { color: "Dark Grizzle", marking: "Dark Grizzle & Tan", image: "/generated_images/airedale_terrier_grizzle_tan.png" }
     ]
   },
   {
     id: "akita",
     name: "Akita",
-    image: "/generated_images/Akita_white_coat_portrait_37caee8a.png",
+    image: "/generated_images/affenpinscher_black.png",
     origin: "Japan",
     group: "Working Group",
     history: "The Akita is an ancient Japanese breed from the mountainous Akita Prefecture in northern Japan, with roots dating back over 1,000 years. Originally called Matagi Inu (hunting dog), they were bred to hunt large game including bears, wild boar, and elk, and to guard Japanese royalty. The breed nearly became extinct during WWII but was preserved through dedicated restoration efforts. Helen Keller brought the first Akita to America in 1937 after touring Japan. The legendary Hachiko, an Akita who waited at Shibuya Station for nine years after his owner's death, became a symbol of loyalty. Declared a Japanese Natural Monument in 1931.",
@@ -147,15 +147,15 @@ const initialBreeds: DogBreed[] = [
       "The breed nearly went extinct during WWII when dogs were culled for fur or crossed with German Shepherds"
     ],
     coatVariants: [
-      { color: "White", marking: "Pure White", image: "/generated_images/Akita_white_coat_portrait_37caee8a.png" },
-      { color: "Brindle", marking: "Brindle Pattern", image: "/generated_images/Akita_brindle_coat_portrait_9d5f93ed.png" },
-      { color: "Red Fawn", marking: "Red Fawn with Markings", image: "/generated_images/Akita_red_fawn_coat_985fd448.png" }
+      { color: "White", marking: "Pure White", image: "/generated_images/affenpinscher_black.png" },
+      { color: "Brindle", marking: "Brindle Pattern", image: "/generated_images/affenpinscher_black.png" },
+      { color: "Red Fawn", marking: "Red Fawn with Markings", image: "/generated_images/affenpinscher_red.png" }
     ]
   },
   {
     id: "alaskan-klee-kai",
     name: "Alaskan Klee Kai",
-    image: "/generated_images/Alaskan_Klee_Kai_gray_white_d9a24b27.png",
+    image: "/generated_images/alaskan_klee_kai_gray_white.png",
     origin: "United States (Alaska)",
     group: "Miscellaneous Class (working toward Non-Sporting)",
     history: "The Alaskan Klee Kai is a relatively new breed developed in Alaska during the 1970s by Linda Spurlin, who wanted to create a smaller companion-sized version of the Alaskan Husky. Through careful selective breeding of small Alaskan and Siberian Huskies with American Eskimo Dogs and Schipperkes, she created this miniature northern breed. The name 'Klee Kai' means 'small dog' in Inuit. The breed was added to the AKC Foundation Stock Service in 2020 and moved to the Miscellaneous Class in 2025, working toward full recognition in the Non-Sporting Group.",
@@ -174,9 +174,9 @@ const initialBreeds: DogBreed[] = [
       "Moved to AKC Miscellaneous Class in June 2025, marking progress toward full recognition"
     ],
     coatVariants: [
-      { color: "Gray & White", marking: "Gray with White Mask", image: "/generated_images/Alaskan_Klee_Kai_gray_white_d9a24b27.png" },
-      { color: "Black & White", marking: "Black with White Mask", image: "/generated_images/Alaskan_Klee_Kai_black_white_1eef935f.png" },
-      { color: "Red & White", marking: "Red with White Mask", image: "/generated_images/Alaskan_Klee_Kai_red_white_c57c33ee.png" }
+      { color: "Gray & White", marking: "Gray with White Mask", image: "/generated_images/alaskan_klee_kai_gray_white.png" },
+      { color: "Black & White", marking: "Black with White Mask", image: "/generated_images/alaskan_klee_kai_black_white.png" },
+      { color: "Red & White", marking: "Red with White Mask", image: "/generated_images/alaskan_klee_kai_red_white.png" }
     ]
   },
   {
