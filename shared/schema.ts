@@ -16,6 +16,7 @@ export const dogBreeds = pgTable("dog_breeds", {
   name: text("name").notNull(),
   image: text("image").notNull(),
   origin: text("origin").notNull(),
+  group: text("group"),
   history: text("history").notNull(),
   size: text("size").notNull(),
   height: text("height").notNull(),
