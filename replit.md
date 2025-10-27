@@ -7,8 +7,11 @@ A responsive, accessible dog breed encyclopedia website with a hybrid vertical-h
 - **Status**: ✅ Complete and fully functional
 - **Tech Stack**: React, TypeScript, Tailwind CSS, Express.js, Wouter, React Query
 - **Design**: Centered portrait layout - dog is the main star with 3-column grid
-- **Breeds**: 3 breeds (Beagle, Dachshund, Golden Retriever) with transparent background images
-- **Images**: 15 AI-generated transparent portraits (3 Beagle + 9 Dachshund + 3 Golden Retriever)
+- **Breeds**: 15 breeds (A-G alphabetically) with transparent background images
+  - Affenpinscher, Afghan Hound, Airedale Terrier, Akita, Alaskan Klee Kai, Alaskan Malamute
+  - American Bulldog, American English Coonhound, American Eskimo Dog, American Foxhound
+  - American Hairless Terrier, American Leopard Hound, Beagle, Dachshund, Golden Retriever
+- **Images**: 51 AI-generated transparent portraits (36 new + 15 original)
 - **Interactive Features**: Coat type and coat color selectors with live portrait switching
 - **Testing**: End-to-end tests passing successfully
 
@@ -27,14 +30,14 @@ A responsive, accessible dog breed encyclopedia website with a hybrid vertical-h
   - `BreedTrivia.tsx`: Fun facts grid display
 
 - **Data**:
-  - `breeds.ts`: Static breed data (currently 3 breeds)
+  - `breeds.ts`: Static breed data (currently 15 breeds)
   - `schema.ts`: TypeScript interfaces and Zod schemas
 
 ### Backend (Express.js)
 - **Routes**:
   - `GET /api/breeds` - List all breeds (supports search via ?q= parameter)
   - `GET /api/breeds/:id` - Get specific breed by ID
-- **Storage**: In-memory storage (MemStorage) with 3 pre-populated breeds
+- **Storage**: In-memory storage (MemStorage) with 15 pre-populated breeds
 - **Error Handling**: Proper 404/500 responses with error messages
 
 ## Features
@@ -74,7 +77,21 @@ A responsive, accessible dog breed encyclopedia website with a hybrid vertical-h
 - Accessibility: WCAG AA compliant, screen reader friendly
 
 ## Recent Changes (October 27, 2025)
-### Latest Update - Portrait-Focused Redesign
+### Latest Update - Major Content Expansion (12 New Breeds)
+- **Added 12 new dog breeds**: Encyclopedia expanded from 3 to 15 breeds (A through G alphabetically)
+  - New breeds: Affenpinscher, Afghan Hound, Airedale Terrier, Akita, Alaskan Klee Kai, Alaskan Malamute, American Bulldog, American English Coonhound, American Eskimo Dog, American Foxhound, American Hairless Terrier, American Leopard Hound
+- **Generated 36 new AI images**: 3 coat color variants per breed with transparent backgrounds
+  - Total images increased from 15 to 51
+- **Complete breed data**: Each new breed includes full information:
+  - Detailed origin and history
+  - Breed group classification (AKC groups: Toy, Hound, Terrier, Working, Non-Sporting, Foundation Stock Service)
+  - Physical characteristics (size, height, weight, coat, lifespan)
+  - Temperament traits and behavior descriptions
+  - Five unique trivia facts per breed
+- **All features working**: Navigation, search, coat variant switching, and portrait display tested and verified for all new breeds
+- **Alphabetical ordering**: Breeds sorted A-Z, making navigation intuitive
+
+### Previous Update - Portrait-Focused Redesign
 - **All transparent background images**: Regenerated all 15 portraits with transparent backgrounds for clean presentation
 - **Portrait-centered layout**: Complete redesign with 3-column grid (3-6-3)
   - Left: Breed name, origin, temperament
