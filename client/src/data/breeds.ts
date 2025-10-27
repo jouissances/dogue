@@ -1,4 +1,4 @@
-import { DogBreed } from "@shared/schema";
+import type { DogBreed } from "@shared/schema";
 import beagleImg from "@assets/generated_images/Beagle_dog_portrait_transparent_0eee134e.png";
 import dachshundImg from "@assets/generated_images/Dachshund_dog_portrait_transparent_be40d679.png";
 import goldenRetrieverImg from "@assets/generated_images/Golden_Retriever_dog_portrait_1f588c8d.png";

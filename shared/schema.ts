@@ -1,31 +1,22 @@
+import { pgTable, text, varchar } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export interface DogBreed {
-  id: string;
-  name: string;
-  image: string;
-  origin: string;
-  history: string;
-  size: string;
-  weight: string;
-  coat: string;
-  lifespan: string;
-  temperament: string[];
-  behavior: string;
-  trivia: string[];
-}
-
-export const dogBreedSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  image: z.string(),
-  origin: z.string(),
-  history: z.string(),
-  size: z.string(),
-  weight: z.string(),
-  coat: z.string(),
-  lifespan: z.string(),
-  temperament: z.array(z.string()),
-  behavior: z.string(),
-  trivia: z.array(z.string()),
+export const dogBreeds = pgTable("dog_breeds", {
+  id: varchar("id").primaryKey(),
+  name: text("name").notNull(),
+  image: text("image").notNull(),
+  origin: text("origin").notNull(),
+  history: text("history").notNull(),
+  size: text("size").notNull(),
+  weight: text("weight").notNull(),
+  coat: text("coat").notNull(),
+  lifespan: text("lifespan").notNull(),
+  temperament: text("temperament").array().notNull(),
+  behavior: text("behavior").notNull(),
+  trivia: text("trivia").array().notNull(),
 });
+
+export const insertDogBreedSchema = createInsertSchema(dogBreeds);
+export type InsertDogBreed = z.infer<typeof insertDogBreedSchema>;
+export type DogBreed = typeof dogBreeds.$inferSelect;
