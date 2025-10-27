@@ -23,7 +23,7 @@ export default function BreedSection({
   return (
     <section
       id={breed.id}
-      className="min-h-screen flex items-center relative snap-start"
+      className="h-screen flex items-center relative snap-start snap-always"
       aria-labelledby={`breed-${breed.id}-name`}
     >
       {/* Horizontal Navigation Buttons */}
@@ -62,7 +62,7 @@ export default function BreedSection({
               <img
                 src={breed.image}
                 alt={`${breed.name} dog portrait`}
-                className="max-h-96 w-auto object-contain drop-shadow-2xl"
+                className="max-h-96 w-auto object-contain"
                 data-testid={`img-breed-${breed.id}`}
               />
             </div>

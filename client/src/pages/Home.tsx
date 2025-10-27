@@ -58,6 +58,21 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [sortedBreeds]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        handlePrevious();
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        handleNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currentBreedIndex]);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Fixed Header with Menu Button */}
@@ -83,7 +98,7 @@ export default function Home() {
       />
 
       {/* Landing Section */}
-      <section className="min-h-screen flex items-center justify-center snap-start">
+      <section className="h-screen flex items-center justify-center snap-start snap-always">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">
             Dog Breed Encyclopedia
@@ -103,7 +118,7 @@ export default function Home() {
       </section>
 
       {/* Breed Sections */}
-      <main className="snap-y snap-mandatory" role="main">
+      <main role="main">
         {sortedBreeds.map((breed, index) => (
           <BreedSection
             key={breed.id}
