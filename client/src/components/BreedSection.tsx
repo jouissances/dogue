@@ -23,7 +23,7 @@ export default function BreedSection({
   return (
     <section
       id={breed.id}
-      className="h-screen flex items-center relative snap-start snap-always"
+      className="h-screen min-w-full flex items-center relative snap-start snap-always flex-shrink-0"
       aria-labelledby={`breed-${breed.id}-name`}
     >
       {/* Horizontal Navigation Buttons */}
